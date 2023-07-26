@@ -6,20 +6,21 @@
 // 8 4 2 4
 // Сумма элементов главной диагонали: 1+9+2 = 12
 
-int FindSumDiag(int[,] matrix)
+string FindSumAlongDiagonal(int[,] array)
 {
-    Console.Write(matrix[0, 0]);
-    int sum = 0;
-    for (int i = 0; i < matrix.GetLength(0); i++)
+int sum = 0;
+List<int> dynamicArray = new List<int>();
+for (int i = 0; i < array.GetLength(0); i++)
+{
+    for (int j = 0 + i; j < array.GetLength(1); j++)
     {
-        for (int j = 0 + i; j < matrix.GetLength(1); j++)
-        {
-            sum += matrix[i, j];
-            Console.Write($" + {matrix[i, j]}");
-            break; 
-        }
+        sum += array[i, j];
+        dynamicArray.Add(array[i, j]);    
+        break;
     }
-    return sum;
+}
+string answer = $"{String.Join(" + ", dynamicArray)} = {sum}";
+return answer;
 }
 
 void Print2DArray(int[,] matrix)
@@ -47,16 +48,15 @@ int[,] Generate2DArray(int rows, int collums, int startValue, int finishValue)
     return matrix;
 }
 
-int GetInput (string text)
+int GetInput(string text)
 {
     Console.Write(text);
     return Convert.ToInt32(Console.ReadLine());
 }
 
-int m = GetInput ("Введите колличествол строк массива: ");
-int n = GetInput ("Введите колличествол столбцов массива: ");
-int[,] array = Generate2DArray(m, n, 1, 3); 
+int m = GetInput("Введите колличествол строк массива: ");
+int n = GetInput("Введите колличествол столбцов массива: ");
+int[,] array = Generate2DArray(m, n, 1, 3);
 Print2DArray(array);
 Console.WriteLine();
-int sum = FindSumDiag(array);
-Console.Write($" = {sum}");
+Console.Write(FindSumAlongDiagonal(array));
