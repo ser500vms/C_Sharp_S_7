@@ -11,7 +11,8 @@ void Print2DArray(int[,] matrix)
     {
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
-            Console.Write($"{matrix[i, j]}\t", -5);
+            Console.Write(String.Format("{0, 3}", matrix[i, j]));
+            Console.Write("\t", -5);
         }
         Console.WriteLine();
     }
